@@ -1,4 +1,4 @@
-# Fogareu AI - Fullstack (Frontend + Backend)
+# Projeto AI - Fullstack (Frontend + Backend)
 
 Este repositorio foi criado para registrar o estudo de IA Generativa e RAG que estou aprendendo na pratica.
 
