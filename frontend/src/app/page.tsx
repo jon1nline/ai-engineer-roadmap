@@ -78,6 +78,21 @@ export default function Home() {
     }
   };
 
+  const [arquivo, setArquivo] = useState<File | null>(null);
+
+  const fazerUpload = async () => {
+    if (!arquivo) return;
+  
+    const formData = new FormData();
+    formData.append('file', arquivo);
+
+  await fetch('http://localhost:8000/api/v1/upload-pdf', {
+    method: 'POST',
+    body: formData, // FormData envia arquivos corretamente
+  });
+  alert("Livro aprendido pela IA!");
+};
+
   return (
     <main className="flex min-h-screen flex-col items-center p-24 bg-gray-900 text-white">
       <h1 className="text-4xl font-bold mb-8"> AI Chat</h1>
@@ -90,6 +105,10 @@ export default function Home() {
           value={pergunta}
           onChange={(e) => setPergunta(e.target.value)}
         />
+        <div className="mb-4 p-4 border-2 border-dashed border-gray-600 rounded">
+  <input type="file" onChange={(e) => setArquivo(e.target.files?.[0] || null)} />
+  <button onClick={fazerUpload} className="ml-2 bg-green-600 p-2 rounded">Subir Livro</button>
+</div>
         
         <button
           onClick={enviarPergunta}
